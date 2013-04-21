@@ -19,6 +19,7 @@
 		<property name="hbm2ddl.auto">update</property>
 		
 		<mapping resource="in/async/hibernate/misc/misc.hbm.xml" />
+		<mapping resource="in/async/hibernate/crud/crud.hbm.xml" />
 		
 		
 	</session-factory>
