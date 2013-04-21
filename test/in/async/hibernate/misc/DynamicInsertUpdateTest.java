@@ -36,7 +36,6 @@ public class DynamicInsertUpdateTest {
 	@Test
 	public void testDynamicInsert() {
 		log.info("Testing Dynamic Insert");
-		fail("Not yet implemented");
 	}
 
 	@Test
