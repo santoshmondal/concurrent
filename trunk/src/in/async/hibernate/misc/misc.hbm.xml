@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" package="in.async.hibernate.misc">
+	
+	<!-- Dynamic Insert Update -->
+	<class name="DynamicInsertUpdate" table='t_diu' dynamic-insert="true" dynamic-update="true">
+		<id name="id" column="id" type="int">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="fname" column="fname" type="string" not-null="true" insert='true' update="true"/>
+		<property name="address" column="address" type="string" />
+		
+		<property name="ctime" column="ctime" type='date' />
+		<property name="utime" column="utime" type='date' not-null="true" />
+	</class>
+	
+	<!-- Composite Key Program -->
+	<class name='CompositePrimaryKey' table="t_misc_composite" dynamic-insert="true" dynamic-update="true">
+		<composite-id>
+			<key-property name="id" column="id" type="int" />
+			<key-property name="fname" column="fname" type="string" />
+		</composite-id>
+
+		<property name="email" column="email" type="string" not-null="true" />
+		<property name="utime" column="utime" type="timestamp" />
+		<property name="ctime" column='ctime' type="date" />
+	</class>
+	
+	
+	<!-- Composite Key Program wd Primary key as class -->
+	<class name='CompositePrimaryKeyReference' table="t_misc_composite_ref" dynamic-insert="true" dynamic-update="true">
+		<composite-id name="id" class="ReferencePrimaryKey">
+			<key-property name="id" column="id" type="int" />
+			<key-property name="uname" column="uname" type="string" />
+		</composite-id>
+
+		<property name="email" column="email" type="string" not-null="true" />
+		<property name="utime" column="utime" type="timestamp" />
+		<property name="ctime" column='ctime' type="date" />
+	</class>
+</hibernate-mapping>
