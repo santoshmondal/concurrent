@@ -16,15 +16,15 @@ import org.hibernate.classic.Session;
 class MiscListStringBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private MiscListPK id;
 	private List<String> list;
 	private Date ctime;
 
-	public int getId() {
+	public MiscListPK getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(MiscListPK id) {
 		this.id = id;
 	}
 
@@ -129,10 +129,12 @@ public class MiscListStringDemo {
 			txn = session.beginTransaction();
 
 			MiscListStringBean obj = new MiscListStringBean();
+			MiscListPK pk = new MiscListPK(11, "java@java.com");
 			List<String> list = new ArrayList<String>();
 			list.add("jsp");
 			list.add("servlet");
 
+			obj.setId(pk);
 			obj.setCtime(new Date());
 			obj.setList(list);
 

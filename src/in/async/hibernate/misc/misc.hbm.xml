@@ -45,12 +45,16 @@
 	
 	<!-- MiscListStringDemo -->
 	<class name='MiscListStringBean' table='t_misc_liststring' dynamic-insert="true" dynamic-update="true">
-		<id name="id" column="id" type="int">
-			<generator class="native"></generator>
-		</id>
+		<composite-id name='id' class='MiscListPK'>
+			<key-property name="id" column="id" type='int' />
+			<key-property name="email" column="email" type='string' />
+		</composite-id>
 		
 		<list name="list">
-			<key column="id"></key>
+			<key>
+				<column name="id"></column>
+				<column name="email"></column>
+			</key>
 			<list-index column="idx" base="1"/>
 			 <element column="name" type="string"/>
 		</list>
