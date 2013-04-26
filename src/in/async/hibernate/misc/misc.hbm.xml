@@ -41,4 +41,19 @@
 		<property name="utime" column="utime" type="timestamp" />
 		<property name="ctime" column='ctime' type="date" />
 	</class>
+	
+	
+	<!-- MiscListStringDemo -->
+	<class name='MiscListStringBean' table='t_misc_liststring' dynamic-insert="true" dynamic-update="true">
+		<id name="id" column="id" type="int">
+			<generator class="native"></generator>
+		</id>
+		
+		<list name="list">
+			<key column="id"></key>
+			<list-index column="idx" base="1"/>
+			 <element column="name" type="string"/>
+		</list>
+		<property name="ctime" column="ctime" type='timestamp' />
+	</class>
 </hibernate-mapping>
