@@ -23,8 +23,15 @@ public class BQTest {
 				cal = Calendar.getInstance();
 				try {
 					Student obj = bq.take();
+					System.out.println("Student::" + obj.getNo());
+					if (obj.getNo() == 5) {
+						throw new RuntimeException();
+					}
 					System.out.println("Consuming::" + obj.getName() + "::" + cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND));
+					System.out.println("BQSize: " + bq.size());
 				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -34,10 +41,13 @@ public class BQTest {
 		Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(new Runnable() {
 			@Override
 			public void run() {
-				Student obj = new Student(1, "Raj");
-				bq.add(obj);
+				int i = 0;
+				while (i < 10) {
+					Student obj = new Student(i++, "Raj");
+					bq.add(obj);
+				}
 			}
-		}, 0, 10, TimeUnit.SECONDS);
+		}, 0, 5, TimeUnit.MINUTES);
 
 	}
 }
