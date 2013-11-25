@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false"
+	package="in.async.hibernate.mapping">
+
+	<!-- 1-1 Mapping -->
+	<class name="Student" table="mapping_one2one_student">
+		<id name="sid" column="sid" type="long">
+			<generator class="identity"></generator>
+		</id>
+		<property name="sname" column="sname" />
+		<many-to-one name="saddress" column="student_address"
+			class="Address" unique="true" not-null="true" cascade="all" />
+	</class>
+	<class name="Address" table="mapping_one2one_address">
+		<id name="aid" column="aid" type="long">
+			<generator class="identity"></generator>
+		</id>
+		<property name="street" column="street" />
+		<property name="city" column="city" />
+		<property name="state" column="state" />
+		<property name="zipcode" column="zipcode" />
+	</class>
+
+
+	<!-- M-1 Mapping -->
+	<class name="StudentM" table="mapping_many2one_student">
+		<id name="sid" column="sid" type="long">
+			<generator class="identity"></generator>
+		</id>
+		<property name="sname" column="sname" />
+		<many-to-one name="saddress" column="student_address"
+			class="Address1" not-null="true" cascade="all" />
+	</class>
+	<class name="Address1" table="mapping_many2one_address">
+		<id name="aid" column="aid" type="long">
+			<generator class="identity"></generator>
+		</id>
+		<property name="street" column="street" />
+		<property name="city" column="city" />
+		<property name="state" column="state" />
+		<property name="zipcode" column="zipcode" />
+	</class>
+
+
+	<!-- 1-M student has many phone numbers -->
+	<class name="Student12M" table="mapping_one2many_student">
+		<id name="sid" type="long" column="STUDENT_ID">
+			<generator class="identity" />
+		</id>
+		<property name="sname" column="STUDENT_NAME" />
+		<set name="studentPhoneNumbers" table="mapping_one2many_STUDENT_PHONE"
+			cascade="all">
+			<key column="STUDENT_ID" />
+			<many-to-many column="PHONE_ID" class="Phone" unique="true" />
+		</set>
+	</class>
+	<class name="Phone" table="mapping_one2many_phone">
+		<id name="phoneId" column="PHONE_ID" type="long">
+			<generator class="identity"></generator>
+		</id>
+		<property name="phoneType" column="PHONE_TYPE" />
+		<property name="phoneNumber" column="PHONE_NUMBER" />
+	</class>
+
+
+	<!-- M2M many student and many course -->
+	<class name="StudentM2M" table="mapping_many2many_student">
+		<id name="studentId" column="STUDENT_ID" type="long">
+			<generator class="native" />
+		</id>
+		<property name="studentName" column="STUDENT_NAME" />
+		<set name="courses" table="mapping_many2many_STUDENT_COURSE" cascade="all">
+			<key column="STUDENT_ID" />
+			<many-to-many column="COURSE_ID" class="Course" />
+		</set>
+	</class>
+	<class name="Course" table="mapping_many2many_course">
+		<id name="courseId" column="COURSE_ID" type="long">
+			<generator class="identity" />
+		</id>
+		<property name="courseName" column="COURSE_NAME" />
+	</class>
+</hibernate-mapping>
