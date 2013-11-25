@@ -56,8 +56,51 @@
 				<column name="email"></column>
 			</key>
 			<list-index column="idx" base="1"/>
-			 <element column="name" type="string"/>
+			<element column="name" type="string"/>
 		</list>
+		<property name="ctime" column="ctime" type='timestamp' />
+	</class>
+	
+	
+	<!-- MiscSetStringDemo -->
+	<class name='MiscSetStringBean' table='t_misc_setstring' dynamic-insert="true" dynamic-update="true">
+		<composite-id name='id' class='MiscSetPK'>
+			<key-property name="id" column="id" type='int' />
+			<key-property name="email" column="email" type='string' />
+		</composite-id>
+		
+		<set name="set">
+			<key>
+				<column name="id"></column>
+				<column name="email"></column>
+			</key>
+			<element>
+				<column name="name"></column>
+				<type name="string"></type>
+			</element>
+		</set>
+		<property name="ctime" column="ctime" type='timestamp' />
+	</class>
+	
+	
+	<!-- MiscMapStringDemo -->
+	<class name='MiscMapStringBean' table='t_misc_mapstring' dynamic-insert="true" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="identity"></generator>
+		</id>
+		
+		<map name="map">
+			<key>
+				<column name="id"></column>
+			</key>
+			<index type="string">
+				<column name="namee"></column>
+			</index>
+			<element>
+				<column name="valueee"></column>
+				<type name="string"></type>
+			</element>
+		</map>
 		<property name="ctime" column="ctime" type='timestamp' />
 	</class>
 </hibernate-mapping>
