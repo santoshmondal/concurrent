@@ -9,9 +9,9 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.classic.Session;
 
 class MiscSetStringBean implements Serializable {
 
@@ -129,7 +129,7 @@ public class MiscSetStringDemo {
 			txn = session.beginTransaction();
 
 			MiscSetStringBean obj = new MiscSetStringBean();
-			MiscSetPK pk = new MiscSetPK(11, "java@java.com");
+			MiscSetPK pk = new MiscSetPK(12, "java@java.com");
 			Set<String> set = new HashSet<String>();
 			set.add("jsp");
 			set.add("servlet");

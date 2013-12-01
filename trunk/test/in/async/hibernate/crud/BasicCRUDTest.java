@@ -1,12 +1,11 @@
 package in.async.hibernate.crud;
 
-import static org.junit.Assert.fail;
-
 import java.util.Date;
+
+import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -31,6 +30,7 @@ public class BasicCRUDTest {
 	}
 
 	@Test
+	@Ignore
 	public void testInsert() {
 		BasicCRUDBean obj = new BasicCRUDBean();
 		BasicPK pk = new BasicPK(3, "java");
@@ -48,7 +48,6 @@ public class BasicCRUDTest {
 	@Test
 	@Ignore
 	public void testUpdate() {
-		fail("Not yet implemented");
 	}
 
 }

@@ -7,9 +7,9 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.classic.Session;
 
 public class CompositePrimaryKeyReference implements Serializable {
 
@@ -107,7 +107,8 @@ public class CompositePrimaryKeyReference implements Serializable {
 			txn = session.beginTransaction();
 
 			ReferencePrimaryKey ref = new ReferencePrimaryKey(1, "java");
-			CompositePrimaryKeyReference obj = (CompositePrimaryKeyReference) session.get(CompositePrimaryKeyReference.class, ref);
+			CompositePrimaryKeyReference obj = (CompositePrimaryKeyReference) session.get(
+					CompositePrimaryKeyReference.class, ref);
 
 			if (obj != null) {
 				log.info("SUCCESS::" + obj.getEmail());
