@@ -9,9 +9,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.classic.Session;
 
 public class DynamicInsertUpdate implements Serializable {
 
@@ -84,14 +84,14 @@ public class DynamicInsertUpdate implements Serializable {
 	}
 
 	/**
-	 * In HBM file when dynamic insert is true. Debug the SQL Query for better understanding.
-	 * The hibernate does not consider those column whose value can be accepted null in table.
-	 * In depth if the bean value is null for the property its not passed to db. 
+	 * In HBM file when dynamic insert is true. Debug the SQL Query for better
+	 * understanding. The hibernate does not consider those column whose value
+	 * can be accepted null in table. In depth if the bean value is null for the
+	 * property its not passed to db.
 	 * 
 	 * CASE2::TRUE::It also helps to take the db default value specified.
 	 * 
-	 * IF FALSE::
-	 * Insert done for all the mapping property with all the columns. 
+	 * IF FALSE:: Insert done for all the mapping property with all the columns.
 	 */
 	public static void dynamicInsert() {
 		Session session = null;
@@ -105,7 +105,7 @@ public class DynamicInsertUpdate implements Serializable {
 			obj.setFname("Java");
 			obj.setUtime(new Date());
 
-			//session.save(obj);
+			// session.save(obj);
 			session.saveOrUpdate(obj);
 
 			txn.commit();
@@ -127,8 +127,8 @@ public class DynamicInsertUpdate implements Serializable {
 	}
 
 	/**
-	 * DynamicUpdate::TURE::Means update the non null value and only if the 
-	 * data has been changed. 
+	 * DynamicUpdate::TURE::Means update the non null value and only if the data
+	 * has been changed.
 	 */
 	public static void dynamicUpdate() {
 		Session session = null;

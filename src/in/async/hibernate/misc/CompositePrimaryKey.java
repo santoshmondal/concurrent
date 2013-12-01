@@ -9,9 +9,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.classic.Session;
 
 public class CompositePrimaryKey implements Serializable {
 
@@ -125,7 +125,8 @@ public class CompositePrimaryKey implements Serializable {
 			session = sessionFactory.openSession();
 			txn = session.beginTransaction();
 
-			Query query = session.createQuery("FROM in.async.hibernate.misc.CompositePrimaryKey cpk Where cpk.id=:id and cpk.fname=:fname");
+			Query query = session
+					.createQuery("FROM in.async.hibernate.misc.CompositePrimaryKey cpk Where cpk.id=:id and cpk.fname=:fname");
 			query.setInteger("id", 2);
 			query.setString("fname", "java");
 
